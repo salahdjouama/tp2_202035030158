@@ -1,46 +1,49 @@
 package salah.tp3;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.net.Socket;
 
 public class Client {
+    private Socket socket;
+    private BufferedReader in;
+    private PrintWriter out;
+    private BufferedReader console;
 
+    public Client(String serverAddress, int port) {
+        try {
+            socket = new Socket(serverAddress, port);
+            in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            out = new PrintWriter(socket.getOutputStream(), true);
+            console = new BufferedReader(new InputStreamReader(System.in));
 
+            new Thread(new IncomingReader()).start();
 
-    Client(String srv_add, int port) {
-        try (Socket socket = new Socket(srv_add, port)) {
-            System.out.println("Connected to the chat server");
-            new Thread(new Receiver(socket)).start();
-
-            PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-            String msg;
-
-            while ((msg = input.readLine()) != null) {
-                out.println(msg);
+            System.out.println("Connected to chat server.");
+            String userInput;
+            while ((userInput = console.readLine()) != null) {
+                out.println(userInput);
             }
         } catch (IOException e) {
-            System.err.println("Error connecting to server: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    private static class Receiver implements Runnable {
-        private Socket socket;
-
-        public Receiver(Socket socket) {
-            this.socket = socket;
-        }
-
+    private class IncomingReader implements Runnable {
+        @Override
         public void run() {
             try {
-                BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 String message;
                 while ((message = in.readLine()) != null) {
-                    System.out.println("Server: " + message);
+                    System.out.println(message);
                 }
             } catch (IOException e) {
-                System.err.println("Error receiving message: " + e.getMessage());
+                e.printStackTrace();
             }
         }
     }
+
+
 }
