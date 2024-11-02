@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="salah.tp3.HelloController">
    <children>
       <Label layoutX="46.0" layoutY="29.0" prefHeight="17.0" prefWidth="149.0" text="Name" />
       <TextField fx:id="namefld" layoutX="46.0" layoutY="46.0" prefHeight="25.0" prefWidth="187.0" />
@@ -18,7 +18,7 @@
       <TextField fx:id="serverfld" layoutX="46.0" layoutY="163.0" prefHeight="25.0" prefWidth="187.0" />
       <Label layoutX="46.0" layoutY="201.0" prefHeight="17.0" prefWidth="149.0" text="Message" />
       <TextField fx:id="msgfld" layoutX="46.0" layoutY="219.0" prefHeight="137.0" prefWidth="187.0" />
-      <Button fx:id="sendbtn" layoutX="46.0" layoutY="373.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="187.0" text="Send">
+      <Button fx:id="sendbtn" layoutX="46.0" layoutY="373.0" mnemonicParsing="false" onAction="#onSendBtnClick" prefHeight="36.0" prefWidth="187.0" text="Send">
          <font>
             <Font size="18.0" />
          </font>
