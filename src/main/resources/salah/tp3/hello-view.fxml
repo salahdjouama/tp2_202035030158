@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="salah.tp3.HelloController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-  </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-  <Label fx:id="welcomeText"/>
-  <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="46.0" layoutY="29.0" prefHeight="17.0" prefWidth="149.0" text="Name" />
+      <TextField fx:id="namefld" layoutX="46.0" layoutY="46.0" prefHeight="25.0" prefWidth="187.0" />
+      <Label layoutX="46.0" layoutY="86.0" prefHeight="17.0" prefWidth="149.0" text="Port" />
+      <TextField fx:id="portfld" layoutX="46.0" layoutY="103.0" prefHeight="25.0" prefWidth="187.0" />
+      <Label layoutX="46.0" layoutY="146.0" prefHeight="17.0" prefWidth="149.0" text="Server IP" />
+      <TextField fx:id="serverfld" layoutX="46.0" layoutY="163.0" prefHeight="25.0" prefWidth="187.0" />
+      <Label layoutX="46.0" layoutY="201.0" prefHeight="17.0" prefWidth="149.0" text="Message" />
+      <TextArea fx:id="msgfld" layoutX="46.0" layoutY="223.0" prefHeight="123.0" prefWidth="187.0" />
+      <Button fx:id="sendbtn" layoutX="46.0" layoutY="373.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="187.0" text="Send">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="280.0" layoutY="15.0" prefHeight="25.0" prefWidth="278.0" text="Messages" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="logsarea" editable="false" layoutX="280.0" layoutY="46.0" prefHeight="370.0" prefWidth="278.0" />
+   </children>
+</AnchorPane>

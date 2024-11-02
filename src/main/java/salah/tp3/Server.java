@@ -65,7 +65,7 @@ public class Server {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
 
-                out.println("Enter your name: ");
+                //out.print("Enter your name: ");
                 clientName = in.readLine();
 
                 Server.broadcast(clientName + " has joined the chat.", this);
@@ -85,6 +85,7 @@ public class Server {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                Server.removeClient(this);
             } finally {
                 try {
                     socket.close();
