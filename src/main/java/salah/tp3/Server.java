@@ -8,6 +8,7 @@ import java.util.*;
 public class Server {
     private static final int PORT = 12345;
     private static Set<ClientHandler> clientHandlers = new HashSet<>();
+    public static String client;
 
     public static void main(String[] args) {
         System.out.println("Chat server started on port " + PORT);
@@ -55,6 +56,7 @@ public class Server {
         private BufferedReader in;
         private String clientName;
 
+
         public ClientHandler(Socket socket) {
             this.socket = socket;
         }
@@ -65,14 +67,15 @@ public class Server {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out = new PrintWriter(socket.getOutputStream(), true);
 
-                //out.print("Enter your name: ");
+               // out.print("Enter your name: ");
                 clientName = in.readLine();
+
 
                 Server.broadcast(clientName + " has joined the chat.", this);
 
                 String message;
                 while ((message = in.readLine()) != null) {
-                    if (message.startsWith("/private")) {
+                    if (message.startsWith("/p")) {
                         String[] tokens = message.split(" ", 3);
                         if (tokens.length == 3) {
                             String recipientName = tokens[1];
